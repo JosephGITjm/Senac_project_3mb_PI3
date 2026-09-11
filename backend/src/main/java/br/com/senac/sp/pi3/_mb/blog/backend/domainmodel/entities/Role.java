@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +23,9 @@ public class Role {
 
     @Column( name = "NAME", length = 25, unique = true )
     private @Getter @Setter String name;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private @Getter @Setter Set<User> users;
 
     @Override
     public boolean equals(Object o) {
